@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 class Root extends Component {
@@ -8,8 +7,8 @@ class Root extends Component {
     return (
       <div>
         <div>{`test component ${this.props.testProp}`}</div>
-        <a onClick={this.props.increment}>Up</a>
-        <a onClick={this.props.decrement}>Down</a>
+        <button onClick={this.props.increment}>Up</button>
+        <button onClick={this.props.decrement}>Down</button>
       </div>
     );
   }

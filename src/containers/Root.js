@@ -1,4 +1,3 @@
-import React, { Component } from "react";
 import Root from "../components/Root";
 import { connect } from "react-redux";
 
