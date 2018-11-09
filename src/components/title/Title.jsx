@@ -2,7 +2,8 @@ import React, { PureComponent, Fragment } from 'react';
 import styled from "styled-components";
 
 const StyledTitle = styled.h1`
-  font-family: "Arial Black", Gadget, sans-serif
+  font-family: "Arial Black", Gadget, sans-serif;
+  margin: 0;
 `;
 
 export default class Title extends PureComponent {

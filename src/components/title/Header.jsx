@@ -6,6 +6,7 @@ import styled from "styled-components";
 const StyledHeader = styled.header`
   text-align: center;
   height: 20vh;
+  padding: 0 15px 0 15px
 `;
 export default class Header extends PureComponent {
 

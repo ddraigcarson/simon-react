@@ -9,6 +9,8 @@ const StyledButton = styled.button`
   background: ${props => props.colour};
   border-${props => props.position}-radius: 100%;
   cursor: pointer;
+  ${props => props.position == "top-right" ?"box-shadow: 0 0 20px #000000;" : ""}
+  outline: none;
 `;
 
 class GameButton extends PureComponent {

@@ -6,24 +6,13 @@ import Game from "./Game";
 import Controls from "./controls/Controls";
 import Score from "./scores/Score";
 import Header from "./title/Header";
+import ResponsiveLayout from "./layout/ResponsiveLayout";
 
-const ResponsiveLayout = styled.div`
+const App = styled.div`
   display: flex;
   flex-direction: column;
   margin: 0;
   flex: 1;
-
-  .responsive-row {
-    display: flex;
-    flex-direction: row;
-    height: 100%;
-  }
-
-  @media screen and (max-width: 575px) {
-    .responsive-row {
-      flex-direction: column;
-    }
-  }
 `;
 
 
@@ -31,15 +20,14 @@ class Root extends Component {
 
   render() {
     return (
-      <ResponsiveLayout>
+      <App>
         <Header />
-        <main className="responsive-row">
+        <ResponsiveLayout direction={ResponsiveLayout.ROW}>
           <Controls />
           <Game />
           <Score />
-        </main>
-
-      </ResponsiveLayout>
+        </ResponsiveLayout>
+      </App>
     );
   }
 }
