@@ -2,4 +2,4 @@ import { combineReducers } from "redux";
 
 import count from "./counter";
 
-export default combineReducers({ count });
+export default combineReducers({ simon: count });

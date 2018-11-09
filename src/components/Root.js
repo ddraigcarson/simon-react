@@ -1,15 +1,45 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
+import styled from "styled-components";
+
+import Game from "./Game";
+import Controls from "./controls/Controls";
+import Score from "./scores/Score";
+import Header from "./title/Header";
+
+const ResponsiveLayout = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  flex: 1;
+
+  .responsive-row {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+  }
+
+  @media screen and (max-width: 575px) {
+    .responsive-row {
+      flex-direction: column;
+    }
+  }
+`;
+
 
 class Root extends Component {
 
   render() {
     return (
-      <div>
-        <div>{`test component ${this.props.testProp}`}</div>
-        <button onClick={this.props.increment}>Up</button>
-        <button onClick={this.props.decrement}>Down</button>
-      </div>
+      <ResponsiveLayout>
+        <Header />
+        <main className="responsive-row">
+          <Controls />
+          <Game />
+          <Score />
+        </main>
+
+      </ResponsiveLayout>
     );
   }
 }

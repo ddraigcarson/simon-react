@@ -1,24 +1,25 @@
 import Root from "../components/Root";
 import { connect } from "react-redux";
+import { makeCount } from "../selectors/simon";
 
-import * as actions from "../actions/appActions";
+import Actions from "../actions/simonActions";
 
 const mapStateToProps = store => {
   return {
-    testProp: store.count
+    testProp: makeCount(store)
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     increment: () => {
-      dispatch(actions.incrementNum());
+      dispatch(Actions.Creators.increment(6));
     },
     decrement: () => {
-      dispatch(actions.decrementNum());
+      dispatch(Actions.Creators.decrement());
     },
     resetCount: payload => {
-      dispatch(actions.resetCounter(payload));
+      dispatch(Actions.Creators.reset());
     }
   };
 };
