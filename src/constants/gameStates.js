@@ -1,0 +1,16 @@
+export const ROUND_READY = "ROUND_READY";
+export const COMPUTERS_TURN = "COMPUTERS_TURN";
+export const PLAYERS_TURN = "PLAYERS_TURN";
+export const PLAYER_CORRECT = "PLAYER_CORRECT";
+export const PLAYER_LOST = "PLAYER_LOST";
+
+const GAME_STATES = [
+    ROUND_READY,
+    COMPUTERS_TURN,
+    PLAYERS_TURN,
+    PLAYER_CORRECT,
+    PLAYER_LOST,
+];
+
+
+export default GAME_STATES;

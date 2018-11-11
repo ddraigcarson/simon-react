@@ -1,7 +1,8 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import { buttons } from "../constants/simon";
+import BUTTONS from "../../constants/buttons";
 import GameButton from "./GameButton"
 
 const StyledGame = styled.main`
@@ -13,20 +14,34 @@ const StyledGame = styled.main`
   padding: 25px 25px;
 `;
 
-const Game = () => {
+const Game = (props) => {
+
+  const onClick = () => {
+    console.log("WAHHHHHH")
+  }
+
   return (
     <StyledGame>
       {
-        buttons.map(o =>
+        BUTTONS.map(o =>
           <GameButton
             key={o.id}
             id={o.id}
             colour={o.colour}
             position={o.position}
+            automated={props.automated}
+            selected={o.id === props.selectedButton}
+            onClick={props.playersMove}
           />)
       }
     </StyledGame>
   )
+}
+
+Game.propTypes = {
+  automated: PropTypes.bool,
+  selectedButton: PropTypes.string,
+  playersMove: PropTypes.func,
 }
 
 export default Game;

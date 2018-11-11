@@ -1,36 +1,41 @@
 import { createReducer } from "reduxsauce";
 import Actions from "../actions/simon";
+import { addToSequence } from "../utils/sequenceUtils"
 
 const INITIAL_STATE = {
   gameInProgress: false,
-  gameWon: false,
   gameLost: false,
+  round: 0,
+  playersTurn: false,
 };
 
-const setGameInProgress = (state, action) => ({
+const newRound = (state, action) => ({
   ...state,
-  gameInProgress: action.value,
-})
-
-const setGameWon = (state, action) => ({
-  ...state,
-  gameWon: action.value,
+  gameInProgress: true,
+  round: state.round + 1,
+  playersTurn: false,
 });
 
-const setGameLost = (state, action) => ({
+const playersTurn = (state, action) => ({
   ...state,
-  gameLost: action.value,
+  playersTurn: true,
 });
 
-const reset = state => (INITIAL_STATE);
+const playerLost = (state, action) => ({
+  ...state,
+  gameInProgress: false,
+  gameLost: true,
+});
+
+const resetGame = state => (INITIAL_STATE);
 
 const Types = Actions.Types;
 
 const reducer = createReducer(INITIAL_STATE, {
-  [Types.GAME_IN_PROGRESS]: setGameInProgress,
-  [Types.GAME_WON]: setGameWon,
-  [Types.GAME_LOST]: setGameLost,
-  [Types.RESET]: reset,
+  [Types.NEW_ROUND]: newRound,
+  [Types.PLAYERS_TURN]: playersTurn,
+  [Types.PLAYER_LOST]: playerLost,
+  [Types.RESET_GAME]: resetGame,
 })
 
 export default reducer;

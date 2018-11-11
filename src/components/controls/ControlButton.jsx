@@ -1,10 +1,11 @@
 import React from 'react';
+import PropTypes from "prop-types";
 import styled from 'styled-components';
 
 const StyledControlButton = styled.button`
   border: none;
   padding: 1rem 2rem;
-  margin: 0;
+  margin: 10px;
   text-decoration: none;
   background: #0069ed;
   color: #ffffff;
@@ -20,15 +21,38 @@ const StyledControlButton = styled.button`
   &:hover {
     background: #0053ba;
   }
+
+  &:disabled {
+    background: black;
+  }
 `;
 
 const ControlButton = (props) => {
+  const onClick = () => {
+    if(!props.disabled) {
+      console.log("CLICKING")
+      props.onClick()
+    }
+  }
 
   return(
-    <StyledControlButton>
+    <StyledControlButton
+      disabled={props.disabled}
+      onClick={onClick}
+      >
       {props.label}
     </StyledControlButton>
   )
+}
+
+ControlButton.propTypes = {
+  label: PropTypes.string,
+  disabled: PropTypes.bool,
+  onClick: PropTypes.func,
+}
+
+ControlButton.defaultProps = {
+  disabled: false,
 }
 
 export default ControlButton;

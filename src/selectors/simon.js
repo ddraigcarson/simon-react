@@ -1,9 +1,9 @@
 import { createSelector } from "reselect";
 
-const countSelector = state => state.simon;
-console.log(countSelector)
+export const getGameInProgress = (state) => state.simon.gameInProgress;
 
-export const makeCount = createSelector(countSelector, count => {
-  console.log(count)
-  return count.count
-});
+export const getLost = (state) => state.simon.gameLost;
+
+export const getRound = (state) => state.simon.round;
+
+export const getComputersTurn = (state) => !state.simon.playersTurn;

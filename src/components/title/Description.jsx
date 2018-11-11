@@ -1,15 +1,22 @@
-import React, { PureComponent, Fragment } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from "prop-types";
 import styled from "styled-components";
+import { COLOURS } from "../../styles/constants";
 
 const StyledDescription = styled.summary`
-  font-family: Arial, Helvetica, sans-serif
+  font-family: Arial, Helvetica, sans-serif;
+  color: ${COLOURS.TEXT}
 `;
 
 export default class Description extends PureComponent {
+  static propTypes = {
+    value: PropTypes.string.isRequired,
+  }
+
   render() {
     return (
       <StyledDescription>
-        Get ready to test your mental mettle! Repeat the patterns and advance to higher levels.
+        {this.props.value}
       </StyledDescription>
     )
   }

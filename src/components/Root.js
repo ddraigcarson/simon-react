@@ -2,11 +2,11 @@ import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import Game from "./Game";
-import Controls from "./controls/Controls";
-import Score from "./scores/Score";
+import Game from "../containers/game/Game";
+import Controls from "../containers/controls/Controls";
+import Score from "../containers/score/Score";
 import Header from "./title/Header";
-import ResponsiveLayout from "./layout/ResponsiveLayout";
+import createResponsiveLayout, { ROW } from "./layout/ResponsiveLayout";
 
 const App = styled.div`
   display: flex;
@@ -15,6 +15,7 @@ const App = styled.div`
   flex: 1;
 `;
 
+const Panel = createResponsiveLayout(styled.div``);
 
 class Root extends Component {
 
@@ -22,21 +23,16 @@ class Root extends Component {
     return (
       <App>
         <Header />
-        <ResponsiveLayout direction={ResponsiveLayout.ROW}>
+        <Panel direction={ROW}>
           <Controls />
           <Game />
           <Score />
-        </ResponsiveLayout>
+        </Panel>
       </App>
     );
   }
 }
 
-Root.propTypes = {
-  increment: PropTypes.func,
-  decrement: PropTypes.func,
-  resetCount: PropTypes.func,
-  testProp: PropTypes.number,
-};
+Root.propTypes = {};
 
 export default Root;

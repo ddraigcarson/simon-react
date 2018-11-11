@@ -1,14 +1,9 @@
 import Root from "../components/Root";
 import { connect } from "react-redux";
-import { makeCount } from "../selectors/simon";
 
 import Actions from "../actions/simonActions";
 
-const mapStateToProps = store => {
-  return {
-    testProp: makeCount(store)
-  };
-};
+const mapStateToProps = store => ({});
 
 const mapDispatchToProps = dispatch => {
   return {
