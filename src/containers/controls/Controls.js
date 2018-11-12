@@ -1,8 +1,8 @@
-import Controls from "../../components/controls/Controls";
-import { connect } from "react-redux";
-import { makeControls } from "../../selectors/controls";
+import Controls from '../../components/controls/Controls';
+import { connect } from 'react-redux';
+import { makeControls } from '../../selectors/controls';
 
-import Actions from "../../actions/simon";
+import Actions from '../../actions/simon';
 
 const mapStateToProps = store => {
   return makeControls(store);

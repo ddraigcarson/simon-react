@@ -18,7 +18,14 @@ describe('actions - simon', () => {
       expect(actions).toEqual(expectedActions);
     });
   });
+
 /*
+//------------------------------------------------------//
+//-----------------------TODO---------------------------//
+//-------------------Needs fixing-----------------------//
+//--------------Look at Jest Mock timers----------------//
+//------------------------------------------------------//
+
   describe('startRound', () => {
     let initialState;
 
@@ -28,26 +35,25 @@ describe('actions - simon', () => {
         sequence: sequence(undefined, {}),
       };
     })
-    // We are only testing what actions are dispatched here, not how they modify the state;
-    // Modifying the initial state to simulate NEW_ROUND adding a light to the computerSequence;
-    test('should, on the first round, dispatch a new round event and two actions to flash the first light in the sequence', () => {
+
+    test('test actions', () => {
       jest.useFakeTimers();
-      initialState.sequence.computerSequence = ["RED"];
+      initialState.sequence.computerSequence = ['RED'];
       const expectedActions = [
         { type: Actions.Types.NEW_ROUND },
-        { type: Actions.Types.COMPUTER_NEXT_IN_SEQ },
         { type: Actions.Types.COMPUTER_FLASH_OFF },
+        { type: Actions.Types.COMPUTER_NEXT_IN_SEQ },
         { type: Actions.Types.PLAYERS_TURN },
       ];
       const store = mockStore(initialState);
       store.dispatch(Actions.Creators.startRound());
+      jest.advanceTimersByTime(2000);
       const actions = store.getActions();
       expect(actions.length).toEqual(expectedActions.length);
       expect(actions).toEqual(expectedActions);
     })
   });
 */
-
   describe('playersTurn', () => {
     let initialState;
 

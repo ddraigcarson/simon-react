@@ -1,5 +1,0 @@
-export const COLOURS  = {
-  LIGHT_BACKGROUND: "#282C34",
-  DARK_BACKGROUND: "",
-  TEXT: "#9DA5B4",
-}

@@ -1,8 +1,6 @@
-import Score from "../../components/score/Score";
-import { connect } from "react-redux";
-import { makeScore } from "../../selectors/score";
-
-import Actions from "../../actions/simon";
+import Score from '../../components/score/Score';
+import { connect } from 'react-redux';
+import { makeScore } from '../../selectors/score';
 
 const mapStateToProps = store => {
   return makeScore(store);

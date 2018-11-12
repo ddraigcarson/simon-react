@@ -1,6 +1,6 @@
-import { createReducer } from "reduxsauce";
-import { addToSequence, addRandomToSequence } from "../utils/sequenceUtils"
-import Actions from "../actions/simon";
+import { createReducer } from 'reduxsauce';
+import { addToSequence, addRandomToSequence } from '../utils/sequenceUtils'
+import Actions from '../actions/simon';
 
 const INITIAL_STATE = {
   computerSequence: [],
@@ -30,6 +30,11 @@ const computerTurnOffFlash = (state, action) => ({
   buttonFlash: false,
 });
 
+const playersTurn = (state, action) => ({
+  ...state,
+  buttonFlash: false,
+});
+
 const playerAddToSequence = (state, action) => ({
   ...state,
   playerSequence: addToSequence(state.playerSequence, action.value),
@@ -47,6 +52,7 @@ const reducer = createReducer(INITIAL_STATE, {
   [Types.NEW_ROUND]: newRound,
   [Types.COMPUTER_NEXT_IN_SEQ]: computerNextInSequence,
   [Types.COMPUTER_FLASH_OFF]: computerTurnOffFlash,
+  [Types.PLAYERS_TURN]: playersTurn,
   [Types.PLAYER_ADD_TO_SEQ]: playerAddToSequence,
   [Types.PLAYER_FINISHED_SEQ]: playerFinishedSequence,
   [Types.RESET_GAME]: resetGame,

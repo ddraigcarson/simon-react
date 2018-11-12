@@ -1,15 +1,14 @@
 import React, { PureComponent } from 'react';
-import PropTypes from "prop-types";
-import styled from "styled-components";
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
-import ControlButton from "./ControlButton";
-import createResponsiveLayout, { COLUMN } from "../layout/ResponsiveLayout";
-import { RESET_BUTTON, START_ROUND } from "../../locales/labels";
-import { COLOURS } from "../../styles/constants";
+import ControlButton from './ControlButton';
+import createResponsiveLayout, { COLUMN } from '../layout/ResponsiveLayout';
+import { RESET_BUTTON, START_ROUND } from '../../locales/labels';
 
 const StyledControls = styled.nav`
   flex: 0 0 20vw;
-  background: ${COLOURS.LIGHT_BACKGROUND};
+  background: ${props => props.theme.lightBackground};
   justify-content: flex-start;
   box-sizing: border-box;
 `;

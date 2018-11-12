@@ -1,6 +1,6 @@
-import { createSelector } from "reselect";
-import { getComputersTurn, getLost, getGameInProgress } from "./simon";
-import { getSequenceInProgress } from "./sequence";
+import { createSelector } from 'reselect';
+import { getLost, getGameInProgress } from './simon';
+import { getSequenceInProgress } from './sequence';
 
 export const makeControls = createSelector(
   [

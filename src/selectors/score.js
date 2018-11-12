@@ -1,7 +1,7 @@
-import { createSelector } from "reselect";
-import * as simon from "./simon";
-import * as sequence from "./sequence";
-import * as labels from "../locales/labels"
+import { createSelector } from 'reselect';
+import * as simon from './simon';
+import * as sequence from './sequence';
+import * as labels from '../locales/labels'
 
 export const makeScore = createSelector(
   [

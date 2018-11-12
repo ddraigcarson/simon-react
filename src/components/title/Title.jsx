@@ -1,12 +1,11 @@
 import React, { PureComponent } from 'react';
-import PropTypes from "prop-types";
-import styled from "styled-components";
-import { COLOURS } from "../../styles/constants";
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 const StyledTitle = styled.h1`
-  font-family: "Arial Black", Gadget, sans-serif;
+  font-family: ${props => props.theme.bigFont}
+  color: ${props => props.theme.fontColour};
   margin: 0;
-  color: ${COLOURS.TEXT}
 `;
 
 export default class Title extends PureComponent {

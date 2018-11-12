@@ -1,6 +1,5 @@
-import { createReducer } from "reduxsauce";
-import Actions from "../actions/simon";
-import { addToSequence } from "../utils/sequenceUtils"
+import { createReducer } from 'reduxsauce';
+import Actions from '../actions/simon';
 
 const INITIAL_STATE = {
   gameInProgress: false,

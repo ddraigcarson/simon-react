@@ -1,7 +1,7 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-export const ROW = "row";
-export const COLUMN = "column";
+export const ROW = 'row';
+export const COLUMN = 'column';
 
 const createResponsiveLayout = (component) => {
   return styled(component)`

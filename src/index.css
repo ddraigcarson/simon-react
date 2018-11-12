@@ -5,6 +5,5 @@ html, body, #root {
 }
 
 #root {
-  display: flex;
-  background: #21252B;
+  display: flex;  
 }

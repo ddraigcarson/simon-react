@@ -1,17 +1,16 @@
 import React from 'react';
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const StyledControlButton = styled.button`
   border: none;
-  padding: 1rem 2rem;
+  padding: 10px 20px;
   margin: 10px;
   text-decoration: none;
-  background: #0069ed;
-  color: #ffffff;
-  font-family: sans-serif;
-  font-size: 1rem;
-  line-height: 1;
+  background: ${props => props.theme.actionColour};
+  color: ${props => props.theme.actionFontColour};
+
+  font-family: ${props => props.theme.littleFont};
   cursor: pointer;
   text-align: center;
   transition: background 250ms ease-in-out, transform 150ms ease;
@@ -19,19 +18,18 @@ const StyledControlButton = styled.button`
   -moz-appearance: none;
 
   &:hover {
-    background: #0053ba;
+    background: ${props => props.theme.actionHoverColour};
   }
 
   &:disabled {
-    background: black;
+    background: ${props => props.theme.actionDisabledColour};
   }
 `;
 
 const ControlButton = (props) => {
   const onClick = () => {
     if(!props.disabled) {
-      console.log("CLICKING")
-      props.onClick()
+      props.onClick();
     }
   }
 
@@ -48,7 +46,7 @@ const ControlButton = (props) => {
 ControlButton.propTypes = {
   label: PropTypes.string,
   disabled: PropTypes.bool,
-  onClick: PropTypes.func,
+  onClick: PropTypes.func.isRequired,
 }
 
 ControlButton.defaultProps = {
