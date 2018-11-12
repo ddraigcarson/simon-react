@@ -18,11 +18,9 @@ const StyledButton = styled.button`
     box-shadow: 0 0 50px ${props.button.highlightColour};
   `}
 
-  ${ props => props.isAutomated ? '' : `
-    &:hover {
+  &:hover {
       background: ${props => props.button.highlightColour};
-    }
-  `}  
+    } 
 `;
 
 class GameButton extends PureComponent {
