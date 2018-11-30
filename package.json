@@ -4,8 +4,8 @@
   "private": true,
   "homepage": "./",
   "dependencies": {
+    "lodash": "^4.17.11",
     "prop-types": "^15.6.2",
-    "ramda": "^0.26.1",
     "react": "^16.7.0-alpha",
     "react-dom": "^16.7.0-alpha",
     "react-redux": "^5.1.0",

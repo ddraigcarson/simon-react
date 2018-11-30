@@ -3,15 +3,17 @@ import PropTypes from 'prop-types';
 
 export const Controls = (props) => {
 
-  const [players, setPlayers] = useState(0);
-  const [startingMoney, setStartingMoney] = useState(0);
+  const [players, setPlayers] = useState(5);
+  const [startingMoney, setStartingMoney] = useState(500);
+  const [smallBlindAmount, setSmallBlindAmount] = useState(50);
 
   const handleSubmit = () => {
     props.startGame({
-      players,
-      startingMoney,
-    })
-  }
+        players,
+        startingMoney,
+        smallBlindAmount,
+    });
+  };
 
   return (
     <div>
@@ -29,6 +31,14 @@ export const Controls = (props) => {
           type="number"
           value={startingMoney}
           onChange={(e) => setStartingMoney(e.target.value)}
+          />
+      </div>
+      <div>
+        Small blind amount:
+        <input
+          type="number"
+          value={smallBlindAmount}
+          onChange={(e) => setSmallBlindAmount(e.target.value)}
           />
       </div>
       <button onClick={handleSubmit}>Start Game</button>

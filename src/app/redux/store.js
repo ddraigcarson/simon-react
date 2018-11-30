@@ -1,20 +1,29 @@
 import {applyMiddleware, combineReducers, createStore} from 'redux';
 
-import {gameConfigReducer}  from './reducers/gameConfig';
-import {sequenceReducer}  from './reducers/sequences';
-import {gameConfigMiddleWare}  from './middleware/feature/gameConfig';
-import {sequencesMiddleWare}  from './middleware/feature/sequences';
+// reducers
+import {game}  from './reducers/game';
+import {round}  from './reducers/round';
+import {players}  from './reducers/players';
+
+// feature middleware
+import {gameMiddleWare}  from './middleware/feature/game';
+import {roundMiddleWare}  from './middleware/feature/round';
+import {playersMiddleWare}  from './middleware/feature/players';
+
+// core middleware
 import {actionSplitterMiddleware}  from './middleware/core/actionSplitter';
 import {loggerMiddleware}  from './middleware/core/logger';
 
 const rootReducer = combineReducers({
-  gameConfigReducer,
-  sequenceReducer,
+    game,
+    players,
+    round,
 });
 
 const featureMiddleware = [
-  sequencesMiddleWare,
-  gameConfigMiddleWare,
+    roundMiddleWare,
+    playersMiddleWare,
+    gameMiddleWare,
 ];
 
 const coreMiddleware = [

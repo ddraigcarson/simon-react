@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { Controls } from '../presentation/Controls';
-import { startGame } from '../../../redux/actions/gameConfig';
+import { startGame } from '../../../redux/actions/game';
 
 
 const mapStateToProps = store => {
