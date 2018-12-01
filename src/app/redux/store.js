@@ -1,4 +1,4 @@
-import {applyMiddleware, combineReducers, createStore} from 'redux';
+import {applyMiddleware, combineReducers, createStore, compose} from 'redux';
 
 // reducers
 import {game}  from './reducers/game';
@@ -15,9 +15,9 @@ import {actionSplitterMiddleware}  from './middleware/core/actionSplitter';
 import {loggerMiddleware}  from './middleware/core/logger';
 
 const rootReducer = combineReducers({
-    game,
-    players,
     round,
+    players,
+    game,
 });
 
 const featureMiddleware = [
@@ -33,6 +33,8 @@ const coreMiddleware = [
 
 export const store = createStore(
   rootReducer,
-  {},
-  applyMiddleware(...featureMiddleware, ...coreMiddleware)
+  compose(
+    applyMiddleware(...featureMiddleware, ...coreMiddleware),
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  )
 );

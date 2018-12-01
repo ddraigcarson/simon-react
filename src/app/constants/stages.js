@@ -1,5 +1,5 @@
-export const CHANGE_DEALER = 'CHANGE_DEALER';
-export const BLINDS = 'BLINDS';
+export const CHANGE_DEALER = 'Set Dealer';
+export const BLINDS = 'Blinds';
 
 
 export const STAGES = [

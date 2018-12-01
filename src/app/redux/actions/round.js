@@ -5,6 +5,8 @@ export const ROUND = '[ROUND]';
 export const SET_ROUND = `${ROUND} SET ROUND`;
 export const SET_STAGE = `${ROUND} SET STAGE`;
 export const SET_DEALER = `${ROUND} SET DEALER`;
+export const SET_SMALL_BLIND = `${ROUND} SET SMALL_BLIND`;
+export const SET_BIG_BLIND = `${ROUND} SET BIG_BLIND`;
 export const BEGIN_BLINDS = `${ROUND} BEGIN BLINDS`;
 
 // action creators
@@ -13,7 +15,7 @@ export const BEGIN_BLINDS = `${ROUND} BEGIN BLINDS`;
 // event
 export const beginBlinds = () => ({
     type: BEGIN_BLINDS,
-    payload: {},
+    payload: { test: 1},
 });
 
 // document
@@ -29,5 +31,15 @@ export const setStage = (stage) => ({
 
 export const setDealer = (player) => ({
     type: SET_DEALER,
+    payload: {player}
+});
+
+export const setSmallBlind = (player) => ({
+    type: SET_SMALL_BLIND,
+    payload: {player}
+});
+
+export const setBigBlind = (player) => ({
+    type: SET_BIG_BLIND,
     payload: {player}
 });

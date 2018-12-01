@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 
+import {NumberInput} from '../../form/NumberInput';
+
 export const Controls = (props) => {
 
   const [players, setPlayers] = useState(5);
@@ -16,36 +18,30 @@ export const Controls = (props) => {
   };
 
   return (
-    <div>
-      <div>
-        Number of players:
-        <input
-          type="number"
-          value={players}
-          onChange={(e) => setPlayers(e.target.value)}
-          />
-      </div>
-      <div>
-        Starting money:
-        <input
-          type="number"
-          value={startingMoney}
-          onChange={(e) => setStartingMoney(e.target.value)}
-          />
-      </div>
-      <div>
-        Small blind amount:
-        <input
-          type="number"
-          value={smallBlindAmount}
-          onChange={(e) => setSmallBlindAmount(e.target.value)}
-          />
-      </div>
+    <div className={props.className}>
+      <NumberInput
+        label="Number of players:"
+        value={players}
+        onChange={setPlayers}
+        />
+      <NumberInput
+        label="Starting money:"
+        value={startingMoney}
+        onChange={setStartingMoney}
+        />
+      <NumberInput
+        label="Small blind amount:"
+        value={smallBlindAmount}
+        onChange={setSmallBlindAmount}
+        />
       <button onClick={handleSubmit}>Start Game</button>
+      <button onClick={props.beginBlinds}>Begin Blinds</button>
     </div>
   )
 }
 
 Controls.propTypes = {
+  className: PropTypes.string,
   startGame: PropTypes.func.isRequired,
+  beginBlinds: PropTypes.func.isRequired,
 }
