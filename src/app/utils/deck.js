@@ -1,12 +1,13 @@
 import * as DECK from '../constants/deck';
 import * as R from 'ramda';
+import _ from 'lodash';
 
 export const createDeck = () => {
   let deck = [];
   for (let suit in DECK.SUITS){
     deck = deck.concat(createSuit(DECK.SUITS[suit]));
   }
-  return deck;
+  return _.shuffle(deck);
 }
 
 const createSuit = (_suit) => {

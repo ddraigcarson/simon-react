@@ -11,11 +11,10 @@ export const players = (state = initialState, action) => {
         case SET_PLAYERS_BALANCE:
             return {
                 ...state,
-                [action.payload.player]: action.payload.balance,
+                [action.payload.player]: {...state[action.payload.player], balance: action.payload.balance},
             };
 
         default:
             return state;
     }
 };
-

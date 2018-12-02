@@ -10,10 +10,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Future Changes
 
 * Middleware approach
-  * ~~logger core middleware~~
-  * fake api call for highscore
-  * transition to a poker game
+  * ~~logger core middleware~~   
   * https://www.instructables.com/id/Learn-To-Play-Poker---Texas-Hold-Em-aka-Texas-Ho/
+  * Clean up the players selectors to be cleaner, state => players
+  * Finish pocket round and clean up pocket middleware
 
 * Move the prod parts into an app folder, keep the tests out and separate.
 * Need shallow tests for at minimum:

@@ -1,9 +1,10 @@
-import {MAKE_BET, setPlayers} from '../../actions/players';
+import {MAKE_BET, setPlayers, setPlayerBalance} from '../../actions/players';
 import {START_GAME} from '../../actions/game';
-import {createPlayers} from "../../../utils/players";
+import {createPlayers} from '../../../utils/players';
+import {selectPlayer} from '../../selectors/players';
 
-export const playersMiddleWare = () => (next) => (action) => {
-    next(action); // next is function dispatch(action) {}
+export const playersMiddleWare = ({dispatch, getState}) => (next) => (action) => {
+    next(action);
 
     switch (action.type) {
 
@@ -14,7 +15,10 @@ export const playersMiddleWare = () => (next) => (action) => {
             break;
 
         case MAKE_BET:
-            next([]);
+            const player = selectPlayer(getState(), action.payload.player);
+            const newBalance = player.balance - action.payload.amount;
+            // todo action splitter - out of money error or success
+            next(setPlayerBalance(action.payload.player, newBalance));
             break;
 
         default:

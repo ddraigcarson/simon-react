@@ -1,36 +1,53 @@
-import {START_GAME} from '../../actions/game';
-import {BEGIN_BLINDS, setRound, setDealer, setSmallBlind, setBigBlind, setStage} from '../../actions/round';
-import {selectNextPlayer, selectRandomPlayer} from "../../selectors/players";
-import {CHANGE_DEALER, BLINDS} from "../../../constants/stages";
+import {START_STAGE, setDealer, setSmallBlind, setBigBlind, setStage, setCurrentPlayer} from '../../actions/round';
 import {makeBet} from "../../actions/players";
+import {drawCard} from "../../actions/deck";
+import {selectPlayers, selectNextPlayer, selectRandomPlayer} from "../../selectors/players";
+import {selectDealer, selectSmallBlind, selectBigBlind} from "../../selectors/round";
+import {CHANGE_DEALER, BLINDS, POCKET_CARDS} from "../../../constants/stages";
 
-export const roundMiddleWare = ({getState}) => (next) => (action) => {
-    next(action); // next is function dispatch(action) {}
+export const roundMiddleWare = ({dispatch, getState}) => (next) => (action) => {
+    next(action);
 
-    switch (action.type) {
+    if (action.type === START_STAGE) {
+      switch (action.payload.stage) {
+        case CHANGE_DEALER:
+          const currentDealer = selectDealer(getState());
+          const dealer = currentDealer ? selectNextPlayer(currentDealer, getState().players) : selectRandomPlayer(action.payload.players);
+          const smallBlind = selectNextPlayer(dealer, getState().players);
+          const bigBlind = selectNextPlayer(smallBlind, getState().players);
+          next([
+            setStage(CHANGE_DEALER),
+            setDealer(dealer),
+            setSmallBlind(smallBlind),
+            setBigBlind(bigBlind),
+          ]);
+          break;
 
-        case START_GAME:
-            const dealer = selectRandomPlayer(action.payload.players);
-            const smallBlind = selectNextPlayer(dealer, getState().players);
-            const bigBlind = selectNextPlayer(smallBlind, getState().players);
-            next([
-                setRound(1),
-                setStage(CHANGE_DEALER),
-                setDealer(dealer),
-                setSmallBlind(selectNextPlayer(dealer, getState().players)),
-                setBigBlind(selectNextPlayer(smallBlind, getState().players)),
-            ]);
-            break;
+        case BLINDS:
+          next(setStage(BLINDS));
+          dispatch(makeBet(selectSmallBlind(getState()), 50));
+          dispatch(makeBet(selectBigBlind(getState()), 100));
+          break;
 
-        case BEGIN_BLINDS:
-            next([
-                setStage(BLINDS),
-                makeBet(smallBlind, 50),
-                makeBet(bigBlind, 100),
-            ]);
-            break;
+        case POCKET_CARDS:
+          let currentPlayer = selectSmallBlind(getState());
+          next([
+            setStage(BLINDS),
+            setCurrentPlayer(currentPlayer),
+          ]);
+          dispatch(drawCard(currentPlayer));
+          currentPlayer = selectNextPlayer(currentPlayer, getState().players)
+          console.log(currentPlayer)
+          next(setCurrentPlayer(currentPlayer));
+          dispatch(drawCard(currentPlayer));
+
+
+
+
+          break;
 
         default:
-            break;
+          break;
+      }
     }
 };

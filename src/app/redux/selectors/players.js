@@ -1,5 +1,7 @@
 import _ from 'lodash';
 
+export const selectPlayer = (state, id) => state.players[id];
+
 export const selectPlayers = state => {
   const _players = Object.keys(state.players);
   const dealer = state.round.dealer;

@@ -4,14 +4,16 @@ import {
     SET_DEALER,
     SET_SMALL_BLIND,
     SET_BIG_BLIND,
+    SET_CURRENT_PLAYER,
 } from '../actions/round';
 
 const initialState = {
-    round: 0,
+    round: 1,
     stage: undefined,
     dealer: undefined,
     smallBlind: undefined,
     bigBlind: undefined,
+    currentPlayer: undefined,
 };
 
 export const round = (state = initialState, action) => {
@@ -31,6 +33,9 @@ export const round = (state = initialState, action) => {
 
         case SET_BIG_BLIND:
             return { ...state, bigBlind: action.payload.player };
+
+        case SET_CURRENT_PLAYER:
+            return { ...state, currentPlayer: action.payload.player };
 
         default:
             return state;

@@ -22,7 +22,7 @@ export const Stages = (props) => {
   return (
     <StyledStages className={props.className}>
       {props.stages.map(
-        stage => <StyledStage key={stage} selected={stage === props.currentStage}>
+        stage => <StyledStage key={stage} selected={stage === props.currentStage} onClick={() => props.startStage(stage)}>
           {stage}
         </StyledStage>
       )}
@@ -34,4 +34,5 @@ Stages.propTypes = {
   className: PropTypes.string,
   stages: PropTypes.array.isRequired,
   currentStage: PropTypes.string,
+  startStage: PropTypes.func,
 }

@@ -7,8 +7,8 @@ import {
 } from '../../actions/game';
 
 export const gameMiddleWare = () => (next) => (action) => {
-  next(action); // next is function dispatch(action) {}
-  
+  next(action);
+
   switch (action.type) {
 
     case START_GAME:

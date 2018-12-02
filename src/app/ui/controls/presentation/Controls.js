@@ -35,7 +35,6 @@ export const Controls = (props) => {
         onChange={setSmallBlindAmount}
         />
       <button onClick={handleSubmit}>Start Game</button>
-      <button onClick={props.beginBlinds}>Begin Blinds</button>
     </div>
   )
 }
@@ -43,5 +42,4 @@ export const Controls = (props) => {
 Controls.propTypes = {
   className: PropTypes.string,
   startGame: PropTypes.func.isRequired,
-  beginBlinds: PropTypes.func.isRequired,
 }
