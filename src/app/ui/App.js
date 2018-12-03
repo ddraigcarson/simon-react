@@ -19,7 +19,7 @@ const StyledControls = styled(Controls)`
 `;
 
 const StyledTable = styled(Table)`
-  flex: 1;
+  flex: 1 0 200px;
 `;
 
 export const App = () => (

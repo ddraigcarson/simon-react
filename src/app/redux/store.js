@@ -4,13 +4,12 @@ import {applyMiddleware, combineReducers, createStore, compose} from 'redux';
 import {game}  from './reducers/game';
 import {round}  from './reducers/round';
 import {players}  from './reducers/players';
-import {deck}  from './reducers/deck';
 
 // feature middleware
 import {gameMiddleWare}  from './middleware/feature/game';
 import {roundMiddleWare}  from './middleware/feature/round';
+import {stageMiddleWare}  from './middleware/feature/stage';
 import {playersMiddleWare}  from './middleware/feature/players';
-import {deckMiddleWare}  from './middleware/feature/deck';
 
 // core middleware
 import {actionSplitterMiddleware}  from './middleware/core/actionSplitter';
@@ -20,14 +19,13 @@ const rootReducer = combineReducers({
     round,
     players,
     game,
-    deck,
 });
 
 const featureMiddleware = [
   gameMiddleWare,
   roundMiddleWare,
+  stageMiddleWare,
   playersMiddleWare,
-  deckMiddleWare,
 ];
 
 const coreMiddleware = [

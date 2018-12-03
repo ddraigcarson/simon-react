@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import _ from 'lodash';
 
 const StyledStages = styled.div`
   padding: 0px 0px;
@@ -21,7 +22,7 @@ export const Stages = (props) => {
 
   return (
     <StyledStages className={props.className}>
-      {props.stages.map(
+      {_.map(props.stages,
         stage => <StyledStage key={stage} selected={stage === props.currentStage} onClick={() => props.startStage(stage)}>
           {stage}
         </StyledStage>

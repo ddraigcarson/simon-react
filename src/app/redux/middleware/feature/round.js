@@ -1,49 +1,35 @@
-import {START_STAGE, setDealer, setSmallBlind, setBigBlind, setStage, setCurrentPlayer} from '../../actions/round';
+import {
+    DRAW_CARD, CALL, setHand, setDeck,
+} from '../../actions/round';
+import {selectCurrentBet, selectPlayerBet, selectPlayerHand} from "../../selectors/round";
+import {selectDeck} from "../../selectors/round";
+import _ from "lodash";
 import {makeBet} from "../../actions/players";
-import {drawCard} from "../../actions/deck";
-import {selectNextPlayer, selectRandomPlayer} from "../../selectors/players";
-import {selectDealer, selectSmallBlind, selectBigBlind} from "../../selectors/round";
-import {CHANGE_DEALER, BLINDS, POCKET_CARDS} from "../../../constants/stages";
 
 export const roundMiddleWare = ({dispatch, getState}) => (next) => (action) => {
     next(action);
 
-    if (action.type === START_STAGE) {
-      switch (action.payload.stage) {
-        case CHANGE_DEALER:
-          const currentDealer = selectDealer(getState());
-          const dealer = currentDealer ? selectNextPlayer(currentDealer, getState()) : selectRandomPlayer(getState());
-          const smallBlind = selectNextPlayer(dealer, getState());
-          const bigBlind = selectNextPlayer(smallBlind, getState());
-          next([
-            setStage(CHANGE_DEALER),
-            setDealer(dealer),
-            setSmallBlind(smallBlind),
-            setBigBlind(bigBlind),
-          ]);
-          break;
+    switch(action.type) {
+        case DRAW_CARD:
+            const deck = selectDeck(getState());
+            const cardToDraw = deck[0];
+            const newDeck = _.drop(deck, 1);
+            const currentPlayerHand = selectPlayerHand(getState(), action.payload.player);
 
-        case BLINDS:
-          next(setStage(BLINDS));
-          dispatch(makeBet(selectSmallBlind(getState()), 50));
-          dispatch(makeBet(selectBigBlind(getState()), 100));
-          break;
+            next([
+                setHand(action.payload.player, [cardToDraw, ...currentPlayerHand]),
+                setDeck(newDeck),
+            ]);
+            break;
 
-        case POCKET_CARDS:
-          next(setStage(BLINDS));
-
-          let currentPlayer = selectSmallBlind(getState());
-          for (let i=0 ; i<2 ; i++) {
-            for (let p=0 ; p<getState().game.players ; p++) {
-              next(setCurrentPlayer(currentPlayer));
-              dispatch(drawCard(currentPlayer));
-              currentPlayer = selectNextPlayer(currentPlayer, getState());
-            }
-          }
-          break;
+        case CALL:
+            const currentBet = selectCurrentBet(getState());
+            const playersCurrentBet = selectPlayerBet(getState(), action.payload.player);
+            dispatch(makeBet(action.payload.player, currentBet - playersCurrentBet));
+            break;
 
         default:
-          break;
-      }
+            break;
     }
+
 };
