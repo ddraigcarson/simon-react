@@ -1,7 +1,7 @@
 import {START_STAGE, setDealer, setSmallBlind, setBigBlind, setStage, setCurrentPlayer} from '../../actions/round';
 import {makeBet} from "../../actions/players";
 import {drawCard} from "../../actions/deck";
-import {selectPlayers, selectNextPlayer, selectRandomPlayer} from "../../selectors/players";
+import {selectNextPlayer, selectRandomPlayer} from "../../selectors/players";
 import {selectDealer, selectSmallBlind, selectBigBlind} from "../../selectors/round";
 import {CHANGE_DEALER, BLINDS, POCKET_CARDS} from "../../../constants/stages";
 
@@ -12,9 +12,9 @@ export const roundMiddleWare = ({dispatch, getState}) => (next) => (action) => {
       switch (action.payload.stage) {
         case CHANGE_DEALER:
           const currentDealer = selectDealer(getState());
-          const dealer = currentDealer ? selectNextPlayer(currentDealer, getState().players) : selectRandomPlayer(action.payload.players);
-          const smallBlind = selectNextPlayer(dealer, getState().players);
-          const bigBlind = selectNextPlayer(smallBlind, getState().players);
+          const dealer = currentDealer ? selectNextPlayer(currentDealer, getState()) : selectRandomPlayer(getState());
+          const smallBlind = selectNextPlayer(dealer, getState());
+          const bigBlind = selectNextPlayer(smallBlind, getState());
           next([
             setStage(CHANGE_DEALER),
             setDealer(dealer),
@@ -30,20 +30,16 @@ export const roundMiddleWare = ({dispatch, getState}) => (next) => (action) => {
           break;
 
         case POCKET_CARDS:
+          next(setStage(BLINDS));
+
           let currentPlayer = selectSmallBlind(getState());
-          next([
-            setStage(BLINDS),
-            setCurrentPlayer(currentPlayer),
-          ]);
-          dispatch(drawCard(currentPlayer));
-          currentPlayer = selectNextPlayer(currentPlayer, getState().players)
-          console.log(currentPlayer)
-          next(setCurrentPlayer(currentPlayer));
-          dispatch(drawCard(currentPlayer));
-
-
-
-
+          for (let i=0 ; i<2 ; i++) {
+            for (let p=0 ; p<getState().game.players ; p++) {
+              next(setCurrentPlayer(currentPlayer));
+              dispatch(drawCard(currentPlayer));
+              currentPlayer = selectNextPlayer(currentPlayer, getState());
+            }
+          }
           break;
 
         default:

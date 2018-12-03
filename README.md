@@ -12,8 +12,12 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 * Middleware approach
   * ~~logger core middleware~~   
   * https://www.instructables.com/id/Learn-To-Play-Poker---Texas-Hold-Em-aka-Texas-Ho/
-  * Clean up the players selectors to be cleaner, state => players
-  * Finish pocket round and clean up pocket middleware
+  * ~~Clean up the players selectors to be cleaner, state => players~~
+  * ~~Finish pocket round and clean up pocket middleware~~
+  * ~~Display the drawn cards for each person~~
+  * ~~Create pot~~
+  * Create table stuff display, pot, deck, the river
+  * Acting stages
 
 * Move the prod parts into an app folder, keep the tests out and separate.
 * Need shallow tests for at minimum:

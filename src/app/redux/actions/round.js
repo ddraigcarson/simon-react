@@ -3,6 +3,7 @@ export const ROUND = '[ROUND]';
 
 // action types
 export const SET_ROUND = `${ROUND} SET ROUND`;
+export const SET_POT = `${ROUND} SET POT`;
 export const SET_STAGE = `${ROUND} SET STAGE`;
 export const SET_DEALER = `${ROUND} SET DEALER`;
 export const SET_SMALL_BLIND = `${ROUND} SET SMALL_BLIND`;
@@ -29,6 +30,11 @@ export const startStage = (stage) => ({
 export const setRound = (round) => ({
     type: SET_ROUND,
     payload: {round},
+});
+
+export const setPot = (pot) => ({
+    type: SET_POT,
+    payload: {pot},
 });
 
 export const setStage = (stage) => ({

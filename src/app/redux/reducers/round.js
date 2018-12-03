@@ -1,5 +1,6 @@
 import {
     SET_ROUND,
+    SET_POT,
     SET_STAGE,
     SET_DEALER,
     SET_SMALL_BLIND,
@@ -9,6 +10,7 @@ import {
 
 const initialState = {
     round: 1,
+    pot: 0,
     stage: undefined,
     dealer: undefined,
     smallBlind: undefined,
@@ -21,6 +23,9 @@ export const round = (state = initialState, action) => {
 
         case SET_ROUND:
             return { ...state, round: action.payload.round };
+
+        case SET_POT:
+            return { ...state, pot: action.payload.pot };
 
         case SET_STAGE:
             return { ...state, stage: action.payload.stage };

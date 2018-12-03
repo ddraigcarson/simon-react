@@ -10,6 +10,21 @@ const StyledTable = styled.div`
 
 const StyledPlayer = styled.div`
   border: 1px solid black;
+  display: flex;
+`;
+
+const StyledPlayerDetails = styled.div`
+  flex: 0 0 200px;
+`;
+
+const StyledHand = styled.div`
+  flex: 1;
+
+  display: flex;
+  justify-content: space-around;
+`;
+
+const StyledCard = styled.div`
 
 `;
 
@@ -20,11 +35,20 @@ export const Table = (props) => {
       {
         props.players.map(
           player => <StyledPlayer key={player.id}>
-            <div>{player.id}</div>
-            <div>{player.balance}</div>
-            { player.isDealer ? <div>D</div> : null}
-            { player.isSmallBlind ? <div>S</div> : null}
-            { player.isBigBlind ? <div>B</div> : null}
+            <StyledPlayerDetails>
+              <div>{player.id}</div>
+              <div>{player.balance}</div>
+              { player.isDealer ? <div>D</div> : null}
+              { player.isSmallBlind ? <div>S</div> : null}
+              { player.isBigBlind ? <div>B</div> : null}
+            </StyledPlayerDetails>
+            <StyledHand>
+              {
+                player.hand.map(
+                  card => <StyledCard key={card.id}>{card.id}</StyledCard>
+                )
+              }
+            </StyledHand>
           </StyledPlayer>
         )
       }
